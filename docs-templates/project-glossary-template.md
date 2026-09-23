@@ -9,7 +9,7 @@
 
 _**How to use this template.** Instructions appear in italic square brackets. Fill in underneath them and leave them in the file until the document is stable._
 
-_**What this document is for.** Every project has words that mean something specific inside the client's organization and something else outside it, or nothing at all. This file fixes one word to one concept, and commits the team, the client, and the AI teammate to using it. That shared vocabulary is called a **ubiquitous language**: the same term in the client conversation, in the vision and scope, in the use cases, in the class names, and in the database columns._
+_**What this document is for.** Every project has words that mean something specific inside the client's organization and something else outside it, or nothing at all. This file fixes one word to one concept, and commits the team, the client, and the AI teammate to using it. That shared vocabulary is called a **ubiquitous language**: the same term in the client conversation, in the requirements, in the use cases, in the class names, and in the database columns._
 
 _**Why the glossary is the first artifact you write and the last one you finish.** It is the cheapest document to start, because your client hands you the terms in the first meeting whether you ask or not, and it is the one that keeps paying: every later document cites it instead of redefining things._
 
@@ -80,6 +80,6 @@ _A record of what one student did for their team during one week, submitted once
 
 _**Synonyms:** WAR, used conversationally by the client and in the existing spreadsheets. Spell it out on first use in any document._
 
-_**Source:** the client's existing Google Sheets process, described in [vision-and-scope.md](vision-and-scope.md) section 1.2._
+_**Source:** the client's existing Google Sheets process, described in the project brief._
 
 _[End of worked examples. Delete them and write your own terms below.]_

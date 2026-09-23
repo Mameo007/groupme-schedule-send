@@ -9,9 +9,9 @@
 
 _**How to use this template.** Instructions appear in italic square brackets. Fill in underneath them and leave them in place until the document is stable._
 
-_**What this document is, and what it is not.** The specification describes the external behavior of your system completely enough that a developer can build it and a tester can check it. What it is **not** is a container for everything you have written. Your glossary, vision and scope, use cases, and business rules are separate documents with their own identifiers, and this one **links to them rather than repeating them**._
+_**What this document is, and what it is not.** The specification describes the external behavior of your system completely enough that a developer can build it and a tester can check it. What it is **not** is a container for everything you have written. Your glossary and use cases are separate documents with their own identifiers, and this one **links to them rather than repeating them**._
 
-_That makes the specification mostly a hub. Read that as a feature. One fact, one home: a business rule copied in here is a business rule that will disagree with `business-rules.md` by October, and nobody will notice which copy is right. The sections below that say "link to" are supposed to be short._
+_That makes the specification mostly a hub. Read that as a feature. One fact, one home: a use case copied in here is a use case that will disagree with `use-cases.md` by October, and nobody will notice which copy is right. The sections below that say "link to" are supposed to be short._
 
 _What this document owns outright: the requirements that have no other home. Functional requirements that are not part of any use case, quality attributes, external interfaces, data requirements, operating environment, and constraints._
 
@@ -32,7 +32,7 @@ _Every requirement in this document carries a name-based slug. Create only the s
 
 _Quality attributes get one space per attribute, so the identifier says which kind of quality it is at the place it is cited: `USE-` usability, `PER-` performance, `SEC-` security, `SAF-` safety, `AVL-` availability, `ROB-` robustness, `SCA-` scalability, `INT-` interoperability, `MNT-` maintainability._
 
-_Requirements cited from elsewhere keep their own identifiers: `UC-*` from [use-cases.md](use-cases.md), `BR-*` from [business-rules.md](business-rules.md), `BO-*`, `SM-*`, `FEAT-*` from [vision-and-scope.md](vision-and-scope.md)._
+_Requirements cited from elsewhere keep their own identifiers: `UC-*` from [use-cases.md](use-cases.md)._
 
 ## Revision History
 
@@ -46,7 +46,7 @@ _Requirements cited from elsewhere keep their own identifiers: `UC-*` from [use-
 
 ### 1.1 The purpose of _[project name]_
 
-_[What the system is for: who wants it, why, and who will use it. Even though the vision and scope answers this, restate it in a paragraph here, because people read this document without having read that one.]_
+_[What the system is for: who wants it, why, and who will use it. Even though the [README](../README.md) answers this, restate it in a paragraph here, because people read this document without having read that one.]_
 
 ### 1.2 The purpose of this document
 
@@ -60,12 +60,11 @@ _[Any typographical conventions, and the identifier formats above, so that someo
 
 ### 1.4 References
 
-_[Every document this specification refers to, with a link. At minimum, the four other documents in this folder. Include external standards you must conform to.]_
+_[Every document this specification refers to, with a link. At minimum, the other documents in this folder and the README. Include external standards you must conform to.]_
 
 - _[Project glossary](project-glossary.md)_
-- _[Vision and scope](vision-and-scope.md)_
+- _[README](../README.md)_
 - _[Use cases](use-cases.md)_
-- _[Business rules](business-rules.md)_
 - _[Open issues](OPEN-ISSUES.md)_
 - _[The Easy Approach to Requirements Syntax (EARS)](https://alistairmavin.com/ears/)_
 
@@ -75,11 +74,11 @@ _[Every document this specification refers to, with a link. At minimum, the four
 
 ### 2.1 Product perspective
 
-_[How this system relates to other systems and to the user's environment. Self-contained, or one component of something larger? Link to the product perspective section of your vision and scope and to your architecture's context diagram rather than redrawing them.]_
+_[How this system relates to other systems and to the user's environment. Self-contained, or one component of something larger? Link to your architecture's context diagram rather than redrawing it.]_
 
 ### 2.2 User classes and characteristics
 
-_[The kinds of user, and what distinguishes them: frequency of use, technical skill, privilege level, whether they are inside or outside the client's organization. Link to the stakeholder profiles in your vision and scope; what belongs here is what affects the software's behavior, especially permissions.]_
+_[The kinds of user, and what distinguishes them: frequency of use, technical skill, privilege level, whether they are inside or outside the client's organization. What belongs here is what affects the software's behavior, especially permissions.]_
 
 ### 2.3 Operating environment
 
@@ -118,9 +117,9 @@ _Examples:_
 
 _[Link only. The glossary is [project-glossary.md](project-glossary.md).]_
 
-## 4. Vision and Scope
+## 4. Scope
 
-_[Link only. Business requirements, objectives, metrics, and scope live in [vision-and-scope.md](vision-and-scope.md).]_
+_[The problem and vision live in the [README](../README.md); link to it rather than restating them. Here, list only what is in and out of scope for this release (the MVP), as short bullets.]_
 
 ---
 
@@ -148,9 +147,9 @@ _**Every requirement here needs an oracle.** If you cannot say how a tester woul
 
 ---
 
-## 6. Business Rules
+## 6. System Rules
 
-_[Link only, to [business-rules.md](business-rules.md). Business rules are a rich source of requirements because they dictate properties the system must have in order to conform to them, but the rules themselves are properties of the client's business, not of your software, and they have their own document.]_
+_[Link only. This project has no separate business-rules document. Rules the system must enforce, such as the session token's TTL, wiping the token after setup, or send times having to be in the future, are written as requirements with their own identifiers: `FR-*` in section 5.2, and `SEC-*` in section 9.3 for the security ones. List those identifiers here so a reader can find every rule in one place.]_
 
 ---
 
@@ -181,7 +180,7 @@ _[Any report the system generates: who reads it, what it contains, how often, an
 
 ### 7.4 Data acquisition, integrity, retention, and disposal
 
-_[Where the data comes from, how it is kept correct, how long it is kept, and how it is destroyed. If your system holds anything about students or other identifiable people, this section is not optional, and its content is usually a business rule you should cite rather than invent.]_
+_[Where the data comes from, how it is kept correct, how long it is kept, and how it is destroyed. If your system holds anything about students or other identifiable people, this section is not optional, and its content is usually a requirement you should cite rather than invent.]_
 
 ---
 
@@ -261,7 +260,7 @@ _[Anything real that fits nowhere above: legal, licensing, installation, trainin
 
 ## Working this document with your agent
 
-_[Delegate: converting prose requirements into EARS shapes; checking that every `UC-*`, `BR-*`, and `FEAT-*` cited here exists in the document that owns it; finding functional requirements that appear in several use cases and should be lifted into section 5.2; drafting an oracle for a quality attribute you have stated only as an adjective._
+_[Delegate: converting prose requirements into EARS shapes; checking that every `UC-*` cited here exists in [use-cases.md](use-cases.md); finding functional requirements that appear in several use cases and should be lifted into section 5.2; drafting an oracle for a quality attribute you have stated only as an adjective._
 
 _Keep human: the numbers. Every threshold in section 9 is a commitment somebody has to live with, and an agent will supply a plausible one (99.9% uptime, 200ms response) that nobody asked for and no one can meet. A number in this document either came from your client, from a measurement, or from a decision your team made deliberately and can defend._
 

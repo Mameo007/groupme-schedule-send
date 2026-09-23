@@ -11,13 +11,13 @@ _**Why it exists.** A draft specification with confident guesses in the gaps is 
 
 _**Where entries come from.** Three places, and all three are routine:_
 
-- _Drafting a section of [vision-and-scope.md](vision-and-scope.md) and hitting something the client brief does not say._
+- _Drafting a section of the [SRS](software-requirements-specification.md) and hitting something the [README](../README.md) does not say._
 - _Your agent's list. When you ask it to draft a section, ask it to list every question it could not answer from the material you gave it. Its list is longer than yours and it is not embarrassed to ask obvious things._
 - _The meeting itself. Your client says something that contradicts your notes, or answers a question with "I would have to check"._
 
-_**How they leave.** Answered in a client meeting, in Slack, or by reading a document. Record the answer and the date, mark it resolved, and put the substance where it belongs (an objective, a term in the [glossary](project-glossary.md), a business rule). This file is a queue, not a home: an answer that stays here has not been filed._
+_**How they leave.** Answered in a client meeting, in Slack, or by reading a document. Record the answer and the date, mark it resolved, and put the substance where it belongs (a term in the [glossary](project-glossary.md), a requirement in the [SRS](software-requirements-specification.md), a use case). This file is a queue, not a home: an answer that stays here has not been filed._
 
-_**Identifiers here are numbers**, `OI-1` upward, and that is deliberate. Numbers are fine for a list that only ever grows at the bottom and gets cited lightly. The slug convention in [vision-and-scope.md](vision-and-scope.md) exists for identifiers that get **reordered** or **cited often**, which is not this list._
+_**Identifiers here are numbers**, `OI-1` upward, and that is deliberate. Numbers are fine for a list that only ever grows at the bottom and gets cited lightly. The slug convention in the [SRS](software-requirements-specification.md) exists for identifiers that get **reordered** or **cited often**, which is not this list._
 
 ## Before a client meeting
 

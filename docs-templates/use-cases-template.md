@@ -1,4 +1,4 @@
-# Software Requirements Specification
+# Use Cases
 
 **Project:** _[Your project name]_
 **Team:** _[Team NN]_
@@ -9,260 +9,166 @@
 
 _**How to use this template.** Instructions appear in italic square brackets. Fill in underneath them and leave them in place until the document is stable._
 
-_**What this document is, and what it is not.** The specification describes the external behavior of your system completely enough that a developer can build it and a tester can check it. What it is **not** is a container for everything you have written. Your glossary, vision and scope, use cases, and business rules are separate documents with their own identifiers, and this one **links to them rather than repeating them**._
+_**What a use case is.** One goal a user can accomplish with your system, written as the dialogue between the actor and the system, including what happens when it goes wrong. It is the unit of work in this course: one use case becomes one issue, one branch, one pull request, and one set of tests._
 
-_That makes the specification mostly a hub. Read that as a feature. One fact, one home: a business rule copied in here is a business rule that will disagree with `business-rules.md` by October, and nobody will notice which copy is right. The sections below that say "link to" are supposed to be short._
+_**Why the use case and not the user story.** You will meet user stories in industry, and they are a good planning tool: "As a student, I want to submit my report so that I get credit." A story is deliberately under-specified, because it is a **placeholder for a conversation** that happens later, between people. That is exactly the wrong property when the thing building your code is an agent that will implement precisely what the specification says and never ask what you meant. Use stories to plan and prioritize. Build against use cases._
 
-_What this document owns outright: the requirements that have no other home. Functional requirements that are not part of any use case, quality attributes, external interfaces, data requirements, operating environment, and constraints._
+_The difference that matters is the parts a story does not have: preconditions, the step-by-step flow, and above all the **extensions**, which is where the failure paths live. Most defects your team ships this semester will be in a path nobody wrote down._
 
 ## Identifiers
 
-_Every requirement in this document carries a name-based slug. Create only the spaces your project actually needs._
+_Use cases are identified as `UC-<AREA>-<slug>`, where the area code groups related functionality and the slug is coined from the goal: `UC-RUB-create-rubric`, `UC-WAR-manage-activities`, `UC-STU-invite-students`._
 
-| Space | For | Example |
-|---|---|---|
-| `FR-<AREA>-<slug>` | Functional requirements outside any use case | `FR-SAVE-autosave-active` |
-| `UI-<slug>` | User interface requirements | `UI-spa-views` |
-| `SI-<slug>` | Software and system interfaces | `SI-llm-proxy-only` |
-| `CI-<slug>` | Communications interfaces | `CI-email-notifications` |
-| `DI-<slug>` | Data requirements | `DI-persist-graph` |
-| `OE-<slug>` | Operating environment | `OE-supported-browsers` |
-| `CO-<slug>` | Design and implementation constraints | `CO-single-application` |
-| `AS-<slug>` / `DE-<slug>` | Assumptions and dependencies | `AS-supported-browser`, `DE-llm-service` |
+_Pick your own area codes from your project's feature areas, three or four letters each, and list them at the top of the Use Case List. Areas come from the end-to-end flow in the [README](../README.md) and the product description in SRS section 2.1, which is where use cases come from._
 
-_Quality attributes get one space per attribute, so the identifier says which kind of quality it is at the place it is cited: `USE-` usability, `PER-` performance, `SEC-` security, `SAF-` safety, `AVL-` availability, `ROB-` robustness, `SCA-` scalability, `INT-` interoperability, `MNT-` maintainability._
+_**Never renumber, rename, or repoint an identifier.** Moving a use case between areas would change its identifier, so put it in the right area the first time, and if you get it wrong, leave it. An identifier is an address, not a description._
 
-_Requirements cited from elsewhere keep their own identifiers: `UC-*` from [use-cases.md](use-cases.md), `BR-*` from [business-rules.md](business-rules.md), `BO-*`, `SM-*`, `FEAT-*` from [vision-and-scope.md](vision-and-scope.md)._
+_Within one use case, `PRE-1`, `POST-1`, and the step numbers are local and may be renumbered freely, because nothing outside the use case cites them._
 
 ## Revision History
 
 | Date | Version | Description | Author |
 |---|---|---|---|
-| _[YYYY-MM-DD]_ | 0.1 | Initial draft | _[Name]_ |
+| _[YYYY-MM-DD]_ | 0.1 | Initial use cases derived from the README's end-to-end flow | _[Name]_ |
 
 ---
 
 ## 1. Introduction
 
-### 1.1 The purpose of _[project name]_
+### 1.1 Purpose
 
-_[What the system is for: who wants it, why, and who will use it. Even though the vision and scope answers this, restate it in a paragraph here, because people read this document without having read that one.]_
+_[One paragraph: this document specifies the goals users can accomplish with the system, in enough detail that a developer knows what to build and a tester knows what to check.]_
 
-### 1.2 The purpose of this document
+### 1.2 Scope
 
-_[What this specification covers and for which release.]_
-
-_Example: "This document describes the functional and nonfunctional requirements for release 1.0 of the Cafeteria Ordering System. It serves as the reference for the project's requirements, defining the scope, functionality, and constraints for stakeholders, developers, and testers."]_
-
-### 1.3 Document conventions
-
-_[Any typographical conventions, and the identifier formats above, so that someone adding a requirement later knows how to name it.]_
-
-### 1.4 References
-
-_[Every document this specification refers to, with a link. At minimum, the four other documents in this folder. Include external standards you must conform to.]_
-
-- _[Project glossary](project-glossary.md)_
-- _[Vision and scope](vision-and-scope.md)_
-- _[Use cases](use-cases.md)_
-- _[Business rules](business-rules.md)_
-- _[Open issues](OPEN-ISSUES.md)_
-- _[The Easy Approach to Requirements Syntax (EARS)](https://alistairmavin.com/ears/)_
+_[Which feature areas are covered here. Name the area codes from the Use Case List. If a feature area has no use cases yet, say so rather than leaving the reader to notice.]_
 
 ---
 
-## 2. Overall Description
+## 2. Use Case Template
 
-### 2.1 Product perspective
+_[The field definitions. Every use case below uses exactly these fields, in this order.]_
 
-_[How this system relates to other systems and to the user's environment. Self-contained, or one component of something larger? Link to the product perspective section of your vision and scope and to your architecture's context diagram rather than redrawing them.]_
+**UC ID and Name.** _The identifier plus a concise name stating the value this use case provides to a user. Begin with an action verb, followed by an object: "Create a rubric", not "Rubric creation" and not "Rubric management", which is a feature, not a goal._
 
-### 2.2 User classes and characteristics
+**Created By** and **Date Created.** _Who wrote it, and when._
 
-_[The kinds of user, and what distinguishes them: frequency of use, technical skill, privilege level, whether they are inside or outside the client's organization. Link to the stakeholder profiles in your vision and scope; what belongs here is what affects the software's behavior, especially permissions.]_
+**Primary and Secondary Actors.** _An actor is a person or other entity outside the system that interacts with it. The primary actor initiates this use case; secondary actors participate in completing it. Actors usually correspond to the user classes in SRS section 2.2. A non-human actor, such as the scheduler's clock, counts too._
 
-### 2.3 Operating environment
+**Trigger.** _The business event, system event, or user action that starts the use case. The trigger tells the system to begin testing the preconditions._
 
-_[The environment the software runs in: hardware, operating systems and versions, browsers, where users and servers are located, and any other software it has to coexist with.]_
+**Description.** _A brief statement of the reason for and the outcome of this use case._
 
-_Examples:_
+**Preconditions.** _What must already be true before this use case can start. **The system must be able to test each precondition**, which is what separates a precondition from a hope. Label them `PRE-1`, `PRE-2`. Example: PRE-1. The user's identity has been authenticated._
 
-- _`OE-supported-browsers`: The system shall operate correctly on the current and previous major versions of Chrome, Firefox, Safari, and Edge._
-- _`OE-server-platform`: The system shall run on a server running the current corporate-approved version of Linux._
-- _`OE-access-paths`: The system shall permit access from the corporate intranet, from a VPN connection, and from Android and iOS phones and tablets._
+**Postconditions.** _The state of the system at successful conclusion. Label them `POST-1`, `POST-2`. Example: POST-1. The price of the item in the database has been updated with the new value._
 
-### 2.4 Design and implementation constraints
+**Main Success Scenario.** _The actor's actions and the system's responses under normal, expected conditions, as a numbered list that alternates between the two and ends by accomplishing the goal in the name. Write "The system validates..." not "The system will validate..."; use cases are written in the present tense._
 
-_[Anything that limits the developers' options: corporate or regulatory policy, hardware limits, required languages or databases, coding standards, interfaces to other applications.]_
+**Extensions.** _Where the real work is. Two kinds, both numbered relative to the step they branch from:_
 
-_Examples:_
+- _**Alternative flows**, other ways the use case can still succeed. Number them `4a`, `4b` for branches from step 4, with their own sub-steps `4a1`, `4a2`. Say where the flow branches off and, if it does, where it rejoins._
+- _**Exceptions**, anticipated error conditions and how the system responds. Numbered the same way._
 
-- _`CO-database-engine`: The system shall use the corporate standard database engine._
-- _`CO-language-version`: The backend shall be written in Java 21._
-- _`CO-coding-standard`: Design, code, and maintenance documentation shall conform to the client's development standard._
+_**A use case with no extensions is not finished.** For every step, ask: what if the input is invalid, the thing is not found, the user cancels, the user is not allowed, or the external system is down? An agent building from a flow with no failure paths will invent the error handling, and you will not find out until a demo._
 
-_The constraint students forget: **who maintains this after you graduate, and what do they already know how to run?** If the answer is one person who knows Python, a Spring Boot service is a constraint violation nobody wrote down._
+**Priority.** _Relative priority of implementing this. Use the same scheme across all your use cases._
 
-### 2.5 Assumptions and dependencies
+**Frequency of Use.** _Roughly how often this is performed, per an appropriate unit of time. An early indicator of load, concurrency, and transaction volume, and it is the field that tells your architecture which use cases matter._
 
-_[An assumption is a factor you believe true without proof, which would change these requirements if it turned out false. A dependency is something outside your control that the project relies on: an external API, a third-party library, a change someone else has to make.]_
+**Requirements.** _The SRS identifiers that govern this use case, such as `FR-*` from section 5.2 and `SEC-*` from section 9.3. **Identifiers only, never the requirement's text**, so the requirement has one home in [software-requirements-specification.md](software-requirements-specification.md) and cannot go stale here._
 
-_Examples:_
+**Associated Information.** _Everything a developer needs that is not a step: the data fields and their validation rules, quality attributes that apply, display and sort strategies, and what happens if execution fails for a systemic reason such as a network timeout. If the use case makes a durable change, say whether a failure rolls it back, completes it, or leaves it partially done._
 
-- _`AS-supported-browser`: Users access the system with a browser that supports the ECMAScript version the frontend targets._
-- _`DE-payroll-integration`: Operation depends on changes being made in the Payroll System to accept payment requests for meals ordered through this system._
+_Data fields are specified as a table:_
 
----
+| Property name | Data type | Validation rule | Security or access concerns | Glossary reference |
+|---|---|---|---|---|
+| _[field]_ | _[type]_ | _[required, format, range]_ | _[who may see or set it]_ | _[term]_ |
 
-## 3. Project Glossary
+**Related Use Cases.** _Other use cases this one invokes or is invoked by, by identifier and name._
 
-_[Link only. The glossary is [project-glossary.md](project-glossary.md).]_
+**Assumptions.** _Anything assumed about this use case or how it executes._
 
-## 4. Vision and Scope
-
-_[Link only. Business requirements, objectives, metrics, and scope live in [vision-and-scope.md](vision-and-scope.md).]_
+**Open Issues.** _What you do not know yet. Mirror it into [OPEN-ISSUES.md](OPEN-ISSUES.md) so it is visible in one place._
 
 ---
 
-## 5. Functional Requirements
+## 3. Use Case List
 
-### 5.1 Use cases
+_[Your area codes, then a table of every use case by area. Write this list first, before specifying any single use case in detail. It is the cheapest thing to review with your client, and finding out you missed a whole area costs minutes here rather than a week later.]_
 
-_[Link to [use-cases.md](use-cases.md). Most of your system's behavior is specified there, as use cases, and it does not get restated here.]_
-
-### 5.2 Non-use-case functional requirements
-
-_[Behavior that is real, testable, and belongs to no single use case: autosave, validation applied everywhere, notification, authorization, audit logging. If you find yourself writing the same step into six use cases, it belongs here instead._
-
-_Group them under sub-headings by concern, and write each one using an [EARS](https://alistairmavin.com/ears/) shape so that it cannot be read two ways:_
-
-- _**Ubiquitous:** The `<system>` shall `<response>`._
-- _**Event driven:** When `<trigger>`, the `<system>` shall `<response>`._
-- _**State driven:** While `<in a state>`, the `<system>` shall `<response>`._
-- _**Optional:** Where `<feature is included>`, the `<system>` shall `<response>`._
-- _**Unwanted behavior:** If `<precondition>`, then the `<system>` shall `<response>`._
-
-_Example: `FR-SAVE-autosave-active`: While a student is editing a weekly activity report during an active week, the system shall persist the draft every 30 seconds._
-
-_**Every requirement here needs an oracle.** If you cannot say how a tester would tell whether it holds, it is not a requirement yet.]_
+| Area code | Feature area | Use cases |
+|---|---|---|
+| _[RUB]_ | _[Rubric]_ | _[`UC-RUB-...`]_ |
 
 ---
 
-## 6. Business Rules
+## 4. Use Cases
 
-_[Link only, to [business-rules.md](business-rules.md). Business rules are a rich source of requirements because they dictate properties the system must have in order to conform to them, but the rules themselves are properties of the client's business, not of your software, and they have their own document.]_
+_[One `###` heading per use case, grouped under a `##` heading per area. Worked example below, taken from Project Pulse. Delete it and write your own.]_
 
----
+### UC-RUB-find-criteria: The course admin finds criteria
 
-## 7. Data Requirements
+**UC ID and Name:** `UC-RUB-find-criteria`: Find criteria
+**Created By:** _[Name]_
+**Date Created:** _[YYYY-MM-DD]_
+**Primary Actor:** course admin
+**Secondary Actors:** none
+**Trigger:** The course admin indicates to find criteria.
+**Description:** The course admin wants to find the peer evaluation criteria defined in her course so that she can review, edit, delete, or add one to a rubric.
 
-### 7.1 Business domain model
+**Preconditions:**
 
-_[The entities in the problem domain and how they relate, as a mermaid class diagram. Model the **business**, not your database schema: this is what the client would recognize, before any decision about tables or persistence.]_
+- PRE-1. The course admin is logged into the system.
 
-    ```mermaid
-    classDiagram
-      class Team {
-        +String name
-      }
-      class Student {
-        +String email
-      }
-      Team "1" --> "*" Student : has
-    ```
+**Postconditions:**
 
-### 7.2 Data dictionary
+- POST-1. A list of matching criteria in the course admin's course is returned and displayed. The list may be empty.
 
-_[Each entity's fields, with data type, allowed values, defaults, and validation rules. Where a use case already specifies a field's validation in its Associated Information, cite the use case instead of repeating it.]_
+**Main Success Scenario:**
 
-### 7.3 Reports
+1. The course admin indicates to find criteria.
+2. The system asks the course admin to enter search values according to the "Search criteria" defined in the Associated Information of this use case.
+3. The course admin enters one or more search values and confirms that she has finished entering.
+4. The system finds all criteria in the course admin's course that match the provided search criteria.
+5. The system displays the matching criteria according to the "Search results display strategy" and the "Sort criteria" defined in the Associated Information of this use case.
+6. Use case ends.
 
-_[Any report the system generates: who reads it, what it contains, how often, and in what format. Reports are where clients discover late that a field they need was never captured, so specify them early.]_
+**Extensions:**
 
-### 7.4 Data acquisition, integrity, retention, and disposal
+- **4a. No matching criteria are found:**
+    - 4a1. The system alerts the course admin that no matching criteria are found.
+    - 4a2. The course admin either chooses `UC-RUB-create-criterion`: Create a criterion, or terminates the use case, or returns to step 2 of the normal flow.
 
-_[Where the data comes from, how it is kept correct, how long it is kept, and how it is destroyed. If your system holds anything about students or other identifiable people, this section is not optional, and its content is usually a business rule you should cite rather than invent.]_
+**Priority:** High
+**Frequency of Use:** Occasional; mostly at course setup and rubric revision.
+**Requirements:** `SEC-role-based-access`
 
----
+**Associated Information:**
 
-## 8. External Interface Requirements
+Search criteria:
 
-### 8.1 User interfaces
+| Property name | Data type | Validation rule | Security or access concerns | Glossary reference |
+|---|---|---|---|---|
+| criterion name | String | Optional | Course-scoped to the course admin's course | Criterion |
 
-_[The user-facing surfaces, at requirement level: which views exist, standards they must conform to, accessibility requirements. Link to wireframes or prototypes rather than describing pixel layouts.]_
+Search results display strategy: criterion name, description, max score.
 
-### 8.2 Hardware interfaces
+Sort criteria: criterion name, ascending.
 
-_[Any hardware the system talks to, or "none".]_
-
-### 8.3 Software interfaces
-
-_[Other software systems yours connects to: what crosses the boundary, in which direction, in what format, and what happens when the other side is unavailable.]_
-
-### 8.4 API document
-
-_[Link to your API documentation. It is generated from the code, so link it rather than transcribing endpoints that will be stale within a week.]_
-
-### 8.5 Communications interfaces
-
-_[Email, notifications, messaging, and the protocols involved.]_
+**Related Use Cases:** `UC-RUB-create-criterion`: Create a criterion.
+**Assumptions:** none
+**Open Issues:** none
 
 ---
 
-## 9. Quality Attributes
+## Working these with your agent
 
-_[How well the system does what it does. **This is the section that decides whether your client is happy with software that meets every functional requirement**, so do not treat it as a formality.]_
+_[Delegate: drafting the main success scenario once you have the trigger and the goal; proposing extensions you have not thought of, which it is genuinely good at; turning a filled-in use case into a first set of test cases; checking that every `FR-*` or `SEC-*` you cite exists in [software-requirements-specification.md](software-requirements-specification.md).]_
 
-_The rule for every entry: an adjective is not a requirement. "Fast", "easy", "secure", and "user-friendly" are the starting point of a conversation, not the end of one. Each entry needs a number and a way to measure it._
+_Keep human: whether this is one use case or three, what the priority is, and whether an extension the agent proposed is a real path in your client's business or a generic one it has seen elsewhere. "The system handles concurrent edits" is a real requirement for some projects and invented complexity for others, and only you have met the client._
 
-_Write one subsection per attribute your project actually has, and say "not applicable" with a reason for the ones it does not. An explicit "not applicable" is information; silence is not._
+_The verification that catches the most: read the main success scenario aloud to someone who has not read the document, and stop wherever they ask a question. Every question is a missing step or a missing extension._
 
-### 9.1 Usability
-
-_Example: `USE-wcag-aa`: All user-facing views shall conform to WCAG 2.1 level AA._
-
-### 9.2 Performance
-
-_Example: `PER-report-load`: A peer evaluation report for a section of 80 students shall render within 2 seconds at the 95th percentile._
-
-### 9.3 Security
-
-_Example: `SEC-authentication`: The system shall authenticate every request to a non-public endpoint, and shall reject unauthenticated requests without disclosing whether the requested resource exists._
-
-### 9.4 Safety
-
-_[Conditions under which the system could contribute to harm, and what prevents it. For most projects in this course the honest answer is `SAF-not-applicable`, with a sentence saying why.]_
-
-### 9.5 Availability
-
-_Example: `AVL-uptime`: The system shall be available 99% of the time during the academic term, excluding announced maintenance windows._
-
-### 9.6 Robustness
-
-_Example: `ROB-edit-loss-bound`: On an unexpected client disconnect, the system shall lose no more than 30 seconds of a student's in-progress edits._
-
-### 9.7 Scalability, interoperability, maintainability
-
-_[Add the ones that apply, with `SCA-`, `INT-`, and `MNT-` identifiers. Maintainability is the one this course cares about most, because someone inherits your code in January.]_
-
----
-
-## 10. Internationalization and Localization
-
-_[Languages, character sets, time zones, date and currency formats. If the answer is a single locale, say so and say why, because that is a real constraint on who can use the system.]_
-
----
-
-## 11. Other Requirements
-
-_[Anything real that fits nowhere above: legal, licensing, installation, training, documentation. Delete this section if it is empty rather than leaving it as a placeholder.]_
-
----
-
-## Working this document with your agent
-
-_[Delegate: converting prose requirements into EARS shapes; checking that every `UC-*`, `BR-*`, and `FEAT-*` cited here exists in the document that owns it; finding functional requirements that appear in several use cases and should be lifted into section 5.2; drafting an oracle for a quality attribute you have stated only as an adjective._
-
-_Keep human: the numbers. Every threshold in section 9 is a commitment somebody has to live with, and an agent will supply a plausible one (99.9% uptime, 200ms response) that nobody asked for and no one can meet. A number in this document either came from your client, from a measurement, or from a decision your team made deliberately and can defend._
-
-_**The specific failure to watch for: invented precision.** A generated specification reads as authoritative at exactly the points where it is guessing. Check every number, every browser version, every retention period against something real, and put the ones you cannot verify in [OPEN-ISSUES.md](OPEN-ISSUES.md) instead of leaving a confident guess in the document your team will build from.]_
+_**Checklist for each use case:** Does the name start with a verb? Can the system test every precondition? Does every step alternate actor and system? Is there at least one extension per step that can fail? Does every cited requirement appear as an identifier only? Could a tester write test cases from this without asking you anything?_
